@@ -1,7 +1,6 @@
 package main;
 
 import gui.NFrame;
-import nicknamegenerator.*;
 
 public class NickGen{
 
@@ -9,5 +8,4 @@ public class NickGen{
 		NFrame nf = new NFrame();
 		
 	}
-
 }

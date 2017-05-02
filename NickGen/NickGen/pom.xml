@@ -5,13 +5,14 @@
   <version>0.0.1-SNAPSHOT</version>
   <description>A program for generating Nicknames</description>
   
+  
   <dependencies>
   	<dependency>
-    	<groupId>shn.hkn.nicknamegenerator</groupId>
-    	<version>1.0</version>
-    	<artifactId>nicknamegenerator.jar</artifactId>
-    	<scope>system</scope>
-    	<systemPath>${project.basedir}/src/main/resources/nicknamegenerator.jar</systemPath>
-	</dependency>
+  		<groupId>test</groupId>
+  		<artifactId>nicknamegenerator.jar</artifactId>
+  		<version>1.0</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}/src/main/resources/nicknamegenerator.jar</systemPath>
+  	</dependency>
   </dependencies>
 </project>
