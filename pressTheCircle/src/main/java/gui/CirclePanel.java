@@ -47,16 +47,20 @@ public class CirclePanel extends JPanel {
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				int coordX = e.getX();
+				int coordY = e.getY();
 				if ( kreis.getCircleColor().equals(Color.WHITE) && gameStart ) {
 					spiel.gameOn();
 					repaint();
 					deadline = r.nextInt(1) + 1;
 					timer.start();
 				}
-				if ( kreis.getCircleColor().equals(Color.GREEN) ) {
+				if ( kreis.getCircleColor().equals(Color.GREEN)
+						&& (coordX <= (kreis.getPosX() + kreis.getCircleWidth()))
+						&& (coordY <= (kreis.getPosY() + kreis.getCirlceHeight())) ) {
 					spiel.addPoint();
-					repaint();
-					if ( spiel.getPoints() == 100 ) {
+					if ( spiel.getPoints() == 25 ) {
+						repaint();
 						timer.stop();
 						gameFinished = true;
 						gameStart = false;
@@ -64,15 +68,10 @@ public class CirclePanel extends JPanel {
 					}
 
 				}
-				else if ( kreis.getCircleColor().equals(Color.RED) ) {
+				else if ( kreis.getCircleColor().equals(Color.RED)
+						&& (coordX <= (kreis.getPosX() + kreis.getCircleWidth()))
+						&& (coordY <= (kreis.getPosY() + kreis.getCirlceHeight())) ) {
 					spiel.losePoint();
-					repaint();
-					if ( spiel.getPoints() == 100 ) {
-						timer.stop();
-						gameFinished = true;
-						gameStart = false;
-						spiel.setPoints(0);
-					}
 
 				}
 
@@ -86,24 +85,27 @@ public class CirclePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawString("Punkte : " + spiel.getPoints(), (this.getWidth() / 3) * 2, this.getHeight() / 9);
+		g.drawString("Punkte : " + spiel.getPoints(), (this.getWidth() / 3) * 2,
+				this.getHeight() / 9);
 		g.drawString("Bei Rot : -1", 10, 60);
 		g.drawString("Bei Grün : +1", 10, 75);
 		g.drawString("Schwierigkeit : " + this.level, 10, 40);
-		g.drawString("Erreiche 100 Punkte", 10, 90);
+		g.drawString("Erreiche 25 Punkte", 10, 90);
 		if ( gameFinished ) {
 			kreis.setCircleColor(Color.white);
 			g.drawString("GEWONNEN", 10, 20);
 			gameFinished = false;
 		}
 		else {
-			kreis.setCircleWidth(this.getWidth() / 3);
-			kreis.setCirlceHeight(this.getHeight() / 3);
-			kreis.setPosX(this.getWidth() / 3);
-			kreis.setPosY(this.getHeight() / 3);
+			Random rand = new Random();
+			int width = this.getWidth();
+			int height = this.getHeight();
+			kreis.setCircleWidth(width / 8);
+			kreis.setCirlceHeight(height / 8);
+			kreis.setPosX(rand.nextInt(width / 3) + this.getWidth() / 5);
+			kreis.setPosY(rand.nextInt(height / 3) + this.getHeight() / 5);
 			kreis.paintComponent(g);
 		}
-
 	}
 
 	// game Configurations

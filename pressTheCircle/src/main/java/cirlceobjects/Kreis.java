@@ -2,10 +2,8 @@ package cirlceobjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 
-public class Kreis implements Observer {
+public class Kreis {
 	private int posX;
 	private int posY;
 	private int circleWidth = 250;
@@ -65,9 +63,4 @@ public class Kreis implements Observer {
 		this.cirlceHeight = cirlceHeight;
 	}
 
-	// Oberserver methods
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-
-	}
 }
